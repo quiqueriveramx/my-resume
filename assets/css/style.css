@@ -79,7 +79,8 @@ h6 {
   z-index: 9997;
   transition: all 0.5s;
   padding: 0 15px;
-  background: #040b14;
+  background: rgb(1,19,11);
+  background: linear-gradient(0deg, #01130b 100%, #032e1a93 100%, #054527 100%);
   overflow-y: auto;
 }
 
@@ -1083,7 +1084,7 @@ section {
   bottom: 0;
   width: 300px;
   z-index: 9999;
-  background: #040b14;
+  background: #01130b;
 }
 
 #footer .copyright {
