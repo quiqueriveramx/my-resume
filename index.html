@@ -44,6 +44,27 @@
 
   gtag('config', 'G-LFCVGG4FCP');
 </script>
+
+<!--Chatbot de Landbot  personalizado-->
+<script>
+  window.addEventListener('mouseover', initLandbot, { once: true });
+  window.addEventListener('touchstart', initLandbot, { once: true });
+  var myLandbot;
+  function initLandbot() {
+    if (!myLandbot) {
+      var s = document.createElement('script');s.type = 'text/javascript';s.async = true;
+      s.addEventListener('load', function() {
+        var myLandbot = new Landbot.Livechat({
+          configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-1724117-XGLMBQ33V4ISX982/index.json',
+        });
+      });
+      s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.js';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+  }
+  </script>
+
 </head>
 
 <body>
@@ -610,13 +631,13 @@
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>quiqueriveramx@gmail.com</p>
+                <a href="mailto:quiqueriveramx@gmail.com"><p>quiqueriveramx@gmail.com</p></a>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>+52 55 3875 4910</p>
+                <h4>Call &amp; WhatsApp:</h4>
+                <a href="https://wa.link/kizljy"><p>+52 55 3875 4910</p></a>
               </div>
 
               <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3760.897098114084!2d-99.15692!3d19.503062500000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDMwJzA2LjEiTiA5OcKwMDknMjEuMiJX!5e0!3m2!1ses-419!2smx!4v1695047788328!5m2!1ses-419!2smx" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" hidden></iframe>
