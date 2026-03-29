@@ -2,112 +2,114 @@
 
 ## Project Overview
 
-Personal resume/portfolio website for **Enrique "Quique" Rivera** — a marketer, developer, and content creator based in Mexico City. Built on the **iPortfolio** Bootstrap template (BootstrapMade.com, Bootstrap v5.3.1). The site is deployed as a static site to **GitHub Pages** from the `main` branch.
+Personal resume/portfolio website for **Enrique "Quique" Rivera** — Digital Marketing Manager at **Kia** (since August 2025), based in Mexico City. Previously Marketing Manager and Digital Marketing Manager at TD SYNNEX (2021–2025). The site is deployed as a static site to **GitHub Pages** from the `main` branch.
 
-Live site: deployed via GitHub Pages (see `.github/workflows/static.yml`).
+The site uses a **modern redesign** (2025) with CSS custom properties, tag-based skills, a built-in AI chat assistant, SEO-optimized meta tags, and JSON-LD structured data for recruiter discoverability.
 
 ## Repository Structure
 
 ```
 /
-├── index.html              # Single-page application (all sections in one file)
-├── Readme.txt              # Brief project description (Spanish)
+├── index.html              # Single-page application (all sections)
 ├── CLAUDE.md               # This file
+├── Readme.txt              # Brief project description (Spanish)
 ├── .github/
 │   └── workflows/
-│       └── static.yml      # GitHub Pages deployment workflow (triggers on push to main)
+│       └── static.yml      # GitHub Pages deployment (triggers on push to main)
 ├── assets/
 │   ├── css/
-│   │   └── style.css       # Main stylesheet (custom CSS on top of Bootstrap)
+│   │   └── style.css       # Main stylesheet — CSS custom properties, modern design
 │   ├── js/
-│   │   └── main.js         # Main JavaScript (navigation, animations, sliders, typed effect)
-│   ├── img/                # Images: profile photos, portfolio, testimonials, favicons
-│   │   └── portfolio/      # Portfolio project screenshots
-│   │   └── testimonials/   # Testimonial author photos
+│   │   └── main.js         # Main JS — navigation, animations, AI chatbot logic
+│   ├── img/                # Images: profile, portfolio, favicons
 │   ├── scss/
-│   │   └── Readme.txt      # Note: SCSS sources only available in pro template version
-│   └── vendor/             # Third-party libraries (vendored, not via npm)
-│       ├── aos/            # Animate On Scroll library
-│       ├── bootstrap/      # Bootstrap 5.3.1 (CSS + JS)
+│   │   └── Readme.txt      # SCSS only in pro template version
+│   └── vendor/             # Third-party libraries (vendored, no npm)
+│       ├── aos/            # Animate On Scroll
+│       ├── bootstrap/      # Bootstrap 5.3.1
 │       ├── bootstrap-icons/ # Bootstrap Icons
-│       ├── boxicons/       # Boxicons icon set
-│       ├── glightbox/      # Lightbox for portfolio images
-│       ├── isotope-layout/ # Isotope grid layout/filtering for portfolio
-│       ├── php-email-form/ # PHP email form handler library
-│       ├── purecounter/    # Animated counter library
-│       ├── swiper/         # Swiper slider (testimonials, portfolio details)
-│       ├── typed.js/       # Typed.js typing animation
-│       └── waypoints/      # Waypoints scroll trigger library
+│       ├── boxicons/       # Boxicons
+│       ├── glightbox/      # Lightbox
+│       ├── isotope-layout/ # Isotope grid
+│       ├── purecounter/    # Animated counters
+│       ├── swiper/         # Swiper slider
+│       ├── typed.js/       # Typed.js animation
+│       └── waypoints/      # Scroll triggers
 └── forms/
-    └── contact.php         # Server-side contact form handler (PHP)
+    └── contact.php         # PHP contact form handler
 ```
 
 ## Key Technical Details
 
 ### Technology Stack
-- **HTML5** single-page layout (`index.html`)
-- **CSS3** with Bootstrap 5.3.1 grid and utilities
-- **Vanilla JavaScript** (no build tools, no npm, no bundler)
-- **PHP** for the contact form backend (`forms/contact.php`)
-- **No build step** — all vendor libraries are committed directly
+- **HTML5** single-page layout with JSON-LD structured data
+- **CSS3** with CSS custom properties (`--primary`, `--accent`, etc.) + Bootstrap 5.3.1
+- **Vanilla JavaScript** — no build tools, no npm, no bundler
+- **Built-in AI Chat Assistant** — keyword-matching chatbot in `main.js` with full CV knowledge base
+- **Google Fonts** — Inter + Poppins
 
 ### Page Sections (in `index.html`)
-Sections appear in this order, identified by `id` attributes:
-1. `#hero` — Hero banner with typed.js animation
-2. `#about` — Bio and personal details
-3. `#facts` — Statistics counters (PureCounter)
-4. `#skills` — Skills progress bars (Waypoints-triggered)
-5. `#resume` — Work experience and education timeline
-6. `#portfolio` — Project gallery with Isotope filtering (currently hidden in nav)
-7. `#services` — Services offered
-8. `#testimonials` — Swiper slider testimonials
-9. `#contact` — Contact form and info
+1. `#hero` — Hero with typed.js animation
+2. `#about` — Bio, contact details, languages
+3. `#facts` — Key achievement counters (ROI, MQL-SQL, sales cycle)
+4. `#skills` — Tag-based hard skills and soft skills (no progress bars)
+5. `#resume` — Work experience timeline (Kia, TD SYNNEX) + education
+6. `#services` — Service offerings with icon cards
+7. `#contact` — Contact info + embedded Google Form
+8. AI Chat Widget — floating bottom-right chat with CV knowledge
 
 ### External Integrations
 - **Google Analytics** (gtag.js) — tracking ID: `G-LFCVGG4FCP`
-- **Landbot** chatbot widget — lazy-loaded on first user interaction
-- **Google Fonts** — Open Sans, Raleway, Poppins
+- **Google Forms** — embedded contact form
+- **Google Fonts** — Inter, Poppins
+
+### AI Chat Assistant
+- Located in `assets/js/main.js` (bottom IIFE)
+- Keyword-matching chatbot with a knowledge base (`KB` object) containing all CV data
+- Supports English and Spanish queries
+- Handles: experience, skills, education, achievements, services, contact, location, languages, AI/ABM specialties
+- Quick-suggestion chips for common questions
+- Typing animation for natural feel
+
+### Design System (CSS Custom Properties)
+Defined in `:root` in `style.css`:
+- `--primary`: `#0ea5e9` (sky blue)
+- `--accent`: `#10b981` (emerald green)
+- `--dark`: `#0f172a` (slate dark)
+- `--radius`: `12px`, `--radius-sm`: `8px`
+- Skill tags use `.skill-tag` (hard) and `.skill-tag.soft` (soft) classes
 
 ## Development Workflow
 
 ### No Build Process
-This is a static site with no build tools. Edit files directly:
-- **HTML**: Edit `index.html`
-- **CSS**: Edit `assets/css/style.css`
-- **JS**: Edit `assets/js/main.js`
+Edit files directly:
+- **HTML**: `index.html`
+- **CSS**: `assets/css/style.css`
+- **JS**: `assets/js/main.js`
 
 ### Deployment
-Deployment is automated via GitHub Actions (`.github/workflows/static.yml`):
-- Pushes to `main` trigger deployment to GitHub Pages
-- The entire repository root is uploaded as the site artifact
-- No build step in CI — just checkout and deploy
+GitHub Actions (`.github/workflows/static.yml`):
+- Push to `main` triggers GitHub Pages deploy
+- No build step — direct deploy of repo root
 
-### Testing
-- No automated tests exist
-- Changes should be verified by opening `index.html` in a browser
-- Check responsiveness — the site has mobile-specific styles and a mobile nav toggle
+### Current CV Timeline
+- **Kia** — Digital Marketing Manager: August 2025 – Present
+- **TD SYNNEX** — Marketing Manager Mexico: April 2024 – July 2025
+- **TD SYNNEX** — Digital Marketing Manager LAC: 2021 – 2024
 
 ## Conventions and Guidelines
 
 ### Code Style
-- HTML uses 2-space indentation
-- CSS is organized with section comment headers (`/*--- # Section Name ---*/`)
-- JavaScript uses `const`/`let`, arrow functions, and is wrapped in an IIFE for scope isolation
-- The main JS uses helper functions `select()`, `on()`, and `onscroll()` for DOM operations
-
-### Content Language
-- The site content is primarily in **English**
-- The `Readme.txt` is in Spanish
-- CV PDFs are available in both English and Spanish (linked from nav)
-
-### Vendor Libraries
-- All third-party libraries are vendored in `assets/vendor/` — do NOT use npm or CDN links
-- SCSS source files are not available (pro template only); edit `assets/css/style.css` directly
-- Do not update vendor libraries without testing thoroughly, as the template depends on specific versions
+- HTML: 2-space indentation
+- CSS: organized with section comment headers, uses CSS custom properties
+- JavaScript: `const`/`let`, arrow functions, IIFE scope isolation
+- Helper functions: `select()`, `on()`, `onscroll()`
 
 ### When Making Changes
-- Keep changes consistent with the iPortfolio template structure
-- Preserve AOS (Animate On Scroll) `data-aos` attributes on sections/elements
-- Maintain Bootstrap grid classes (`col-lg-*`, `col-md-*`) for responsive layout
-- The `#portfolio` section nav link is currently `hidden` — respect this unless asked to show it
-- Contact form requires a PHP server; it won't work on static GitHub Pages hosting alone
+- Use CSS custom properties for colors/spacing — do not hardcode values
+- Preserve AOS `data-aos` attributes on sections
+- Maintain Bootstrap grid classes for responsive layout
+- Skills use `.skill-tag` elements (not progress bars)
+- Update the AI chatbot's `KB` object in `main.js` when CV info changes
+- All vendor libraries are vendored — do not use npm or CDN links
+- Contact form is a Google Forms embed (not PHP on GitHub Pages)
