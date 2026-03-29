@@ -196,10 +196,11 @@
    */
   window.addEventListener('load', () => {
     AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
+      duration: 1000,
+      easing: 'ease-out-cubic',
+      once: false,
+      mirror: true,
+      offset: 80
     });
   });
 
@@ -221,8 +222,78 @@
  */
 window.addEventListener("load", function() {
   const loader = document.getElementById("preloader");
-  if (loader) loader.style.display = "none";
+  if (loader) {
+    loader.style.transition = "opacity .5s ease";
+    loader.style.opacity = "0";
+    setTimeout(() => loader.style.display = "none", 500);
+  }
 });
+
+/* ============================================================
+   3D PARALLAX SCROLL ENGINE
+   Elements approach/recede as user scrolls — z-depth illusion
+   ============================================================ */
+(function() {
+  "use strict";
+
+  const sections = document.querySelectorAll('.parallax-section');
+  if (!sections.length) return;
+
+  const updateParallax = () => {
+    const viewH = window.innerHeight;
+    const scrollY = window.scrollY;
+
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionH = rect.height;
+      const center = sectionTop + sectionH / 2;
+      const viewCenter = viewH / 2;
+
+      // How far from viewport center (normalized -1 to 1)
+      const dist = (center - viewCenter) / viewH;
+
+      section.classList.remove('far', 'approaching', 'active-view', 'passed');
+
+      if (sectionTop > viewH * 1.2) {
+        // Way below — compressed and faded
+        section.classList.add('far');
+      } else if (dist > 0.3) {
+        // Below center — approaching
+        section.classList.add('approaching');
+      } else if (dist >= -0.4) {
+        // In viewport center — full size
+        section.classList.add('active-view');
+      } else {
+        // Above — slightly enlarged as it passes
+        section.classList.add('passed');
+      }
+
+      // Smooth continuous transform for depth-float children
+      const floats = section.querySelectorAll('.depth-float');
+      floats.forEach(el => {
+        const parallaxAmount = dist * -15;
+        el.style.transform = `translateY(${parallaxAmount}px)`;
+      });
+    });
+  };
+
+  // Use requestAnimationFrame for smooth performance
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        updateParallax();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Initial call
+  window.addEventListener('load', updateParallax);
+  updateParallax();
+})();
 
 /* ============================================================
    AI CHAT ASSISTANT
